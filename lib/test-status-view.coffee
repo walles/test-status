@@ -3,22 +3,27 @@
 module.exports =
 class TestStatusView extends View
   @content: ->
-    @div class: 'test-status overlay from-top', =>
-      @div "The TestStatus package is Alive! It's ALIVE!", class: "message"
+    @div class: 'inline-block', =>
+      @span outlet:  'testStatus', class: 'test-status fail', tabindex: -1, 'Test Status'
 
-  initialize: (serializeState) ->
-    atom.workspaceView.command "test-status:toggle", => @toggle()
+  initialize: ->
+    atom.workspace.eachEditor (editor) =>
+      @handleBufferEvents(editor)
 
-  # Returns an object that can be retrieved when package is activated
-  serialize: ->
+    @subscribe atom.packages.once 'activated', =>
+      setTimeout =>
+        atom.workspaceView.statusBar.appendLeft(this)
+      , 1
 
-  # Tear down any state and detach
+  handleBufferEvents: (editor) ->
+    buffer = editor.getBuffer()
+
+    @subscribe buffer.on 'will-be-saved', =>
+      @testStatus.text('Running...').addClass('pending').removeClass('success fail')
+
+    @subscribe buffer.on 'destroyed', =>
+      @testStatus.text('').removeClass('pending success fail')
+      @unsubscribe(buffer)
+
   destroy: ->
     @detach()
-
-  toggle: ->
-    console.log "TestStatusView was toggled!"
-    if @hasParent()
-      @detach()
-    else
-      atom.workspaceView.append(this)

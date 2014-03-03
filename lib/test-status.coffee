@@ -4,10 +4,7 @@ module.exports =
   testStatusView: null
 
   activate: (state) ->
-    @testStatusView = new TestStatusView(state.testStatusViewState)
+    @testStatusView = new TestStatusView
 
   deactivate: ->
     @testStatusView.destroy()
-
-  serialize: ->
-    testStatusViewState: @testStatusView.serialize()

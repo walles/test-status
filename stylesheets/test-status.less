@@ -5,4 +5,15 @@
 @import "ui-variables";
 
 .test-status {
+  &.pending {
+    color: @text-color-warning;
+  }
+
+  &.success {
+    color: @text-color-success;
+  }
+
+  &.fail {
+    color: @text-color-error;
+  }
 }
