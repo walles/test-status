@@ -1,25 +1,21 @@
 {spawn} = require 'child_process'
-fs      = require 'fs'
-path    = require 'path'
 
 {View}  = require 'atom'
 
 module.exports =
-class TestStatusView extends View
+class TestStatusStatusBarView extends View
   @content: ->
     @div class: 'inline-block', =>
       @span outlet:  'testStatus', class: 'test-status icon icon-hubot', tabindex: -1, ''
 
   initialize: ->
-    return unless fs.existsSync(path.join(atom.project.path, 'Rakefile'))
+    @attach()
 
     atom.workspace.eachEditor (editor) =>
       @handleBufferEvents(editor)
 
-    @subscribe atom.packages.once 'activated', =>
-      setTimeout =>
-        atom.workspaceView.statusBar.appendLeft(this)
-      , 1
+  attach: ->
+    atom.workspaceView.statusBar.appendLeft(this)
 
   handleBufferEvents: (editor) ->
     buffer = editor.getBuffer()
@@ -36,16 +32,13 @@ class TestStatusView extends View
     rake = spawn('rake', [], cwd: atom.project.path)
 
     rake.stdout.on 'data', (data) ->
-      console.log "TestStatus: on data"
+      console.log "rake data", data.toString()
 
     rake.stderr.on 'data', (data) ->
-      console.log "TestStatus: on error"
+      console.log "rake error", data.toString()
 
     rake.on 'close', (code) =>
       if code is 0
         @testStatus.removeClass('pending fail').addClass('success')
       else
         @testStatus.removeClass('pending success').addClass('fail')
-
-  destroy: ->
-    @detach()
