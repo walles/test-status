@@ -13,6 +13,9 @@ class TestStatusStatusBarView extends View
     atom.workspace.eachEditor (editor) =>
       @handleBufferEvents(editor)
 
+    @subscribe this, 'click', =>
+      @testStatusView.toggle()
+
   attach: ->
     atom.workspaceView.statusBar.appendLeft(this)
 
