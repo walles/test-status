@@ -3,7 +3,7 @@
 Adds the status of your `rake` command to the Atom status bar when you save a
 Ruby source file.
 
-![Test Status Usage](screenshots/atom-test-status.gif)
+![Test Status Usage](https://raw.github.com/tombell/test-status/master/screenshots/atom-test-status.gif)
 
 ## Installing
 
