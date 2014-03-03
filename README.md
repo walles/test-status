@@ -18,3 +18,8 @@ passed and a red Hubot face if any test failed.
 
 You can toggle the test output panel using the default `cmd+l` keymapping. The
 command is `test-status:toggle-output` if you wish to remap this key yourself.
+
+## Support
+
+If you wish to support this package and help further its development, feel free
+to tip via [![Gittip](http://img.shields.io/gittip/tombell.png)](https://www.gittip.com/tombell/)
