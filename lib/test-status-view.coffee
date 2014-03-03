@@ -1,12 +1,18 @@
-{View} = require 'atom'
+{spawn} = require 'child_process'
+fs      = require 'fs'
+path    = require 'path'
+
+{View}  = require 'atom'
 
 module.exports =
 class TestStatusView extends View
   @content: ->
     @div class: 'inline-block', =>
-      @span outlet:  'testStatus', class: 'test-status fail', tabindex: -1, 'Test Status'
+      @span outlet:  'testStatus', class: 'test-status icon icon-hubot', tabindex: -1, ''
 
   initialize: ->
+    return unless fs.existsSync(path.join(atom.project.path, 'Rakefile'))
+
     atom.workspace.eachEditor (editor) =>
       @handleBufferEvents(editor)
 
@@ -19,11 +25,27 @@ class TestStatusView extends View
     buffer = editor.getBuffer()
 
     @subscribe buffer.on 'will-be-saved', =>
-      @testStatus.text('Running...').addClass('pending').removeClass('success fail')
+      @testStatus.removeClass('success fail').addClass('pending')
+      @runTests()
 
     @subscribe buffer.on 'destroyed', =>
-      @testStatus.text('').removeClass('pending success fail')
+      @testStatus.removeClass('pending success fail')
       @unsubscribe(buffer)
+
+  runTests: ->
+    rake = spawn('rake', [], cwd: atom.project.path)
+
+    rake.stdout.on 'data', (data) ->
+      console.log "TestStatus: on data"
+
+    rake.stderr.on 'data', (data) ->
+      console.log "TestStatus: on error"
+
+    rake.on 'close', (code) =>
+      if code is 0
+        @testStatus.removeClass('pending fail').addClass('success')
+      else
+        @testStatus.removeClass('pending success').addClass('fail')
 
   destroy: ->
     @detach()

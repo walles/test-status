@@ -1,8 +1,5 @@
-// The ui-variables file is provided by base themes provided by Atom.
-//
-// See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
-// for a full listing of what's available.
 @import "ui-variables";
+@import "octicon-mixins";
 
 .test-status {
   &.pending {
@@ -15,5 +12,14 @@
 
   &.fail {
     color: @text-color-error;
+  }
+
+  // All icons are smaller than normal (normal is 16px)
+  // Borrowed from status-bar
+  .icon:before {
+    .icon-size(14px);
+    position: relative;
+    top: 1px;
+    margin-right: 0px;
   }
 }
