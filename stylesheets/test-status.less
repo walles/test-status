@@ -1,6 +1,16 @@
 @import "ui-variables";
 @import "octicon-mixins";
 
+.test-status-output {
+  message {
+    overflow: scroll;
+  }
+
+  pre {
+    font-size: 10px;
+  }
+}
+
 .test-status {
   &.pending {
     color: @text-color-warning;
