@@ -22,4 +22,6 @@ command is `test-status:toggle-output` if you wish to remap this key yourself.
 ## Support
 
 If you wish to support this package and help further its development, feel free
-to tip via [![Gittip](http://img.shields.io/gittip/tombell.png)](https://www.gittip.com/tombell/)
+to tip via Gittip.
+
+[![Gittip](http://img.shields.io/gittip/tombell.png)](https://www.gittip.com/tombell/)
