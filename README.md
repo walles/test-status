@@ -6,7 +6,7 @@ Ruby source file.
 ## Installing
 
 Use the Atom package manager, which can be found in the Settings view or run
-`apm install atom-test-status` from the command line.
+`apm install test-status` from the command line.
 
 ## Usage
 
