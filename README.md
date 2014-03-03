@@ -1,7 +1,9 @@
 # Test Status Package
 
-Adds the status of your `minitest` suite to the Atom status bar when you save a
+Adds the status of your `rake` command to the Atom status bar when you save a
 Ruby source file.
+
+![Test Status Usage](screenshots/atom-test-status.gif)
 
 ## Installing
 
