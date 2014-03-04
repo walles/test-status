@@ -16,8 +16,20 @@ The Test Status package when run `rake` for your project (if a `Rakefile`)
 exists in your project root. A green Hubot face will show if the tests all
 passed and a red Hubot face if any test failed.
 
-You can toggle the test output panel using the default `cmd+l` keymapping. The
-command is `test-status:toggle-output` if you wish to remap this key yourself.
+You can toggle the test output panel using the default keymappign `cmd+l` on Mac
+OS X and `ctrl+l`.
+
+The following _commands_ are available for you to remap and run via the Command
+Palette.
+
+* `test-status:toggle-output` - Toggles the test results output panel
+* `test-status:run-tests` - Runs the configured test command
+
+## Coming Soon
+
+I am working on finding the best way to support a configurable test command,
+rather than just supporting `rake`. You can add your suggestions to the open
+[issue #2](https://github.com/tombell/test-status/issues/2).
 
 ## Support
 
