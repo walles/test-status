@@ -2,18 +2,14 @@ fs   = require 'fs'
 path = require 'path'
 
 TestStatusStatusBarView = require './test-status-status-bar-view'
-TestStatusView = require './test-status-view'
 
 module.exports =
   # Public: Active the package and initialize the test-status views.
   #
   # Returns nothing.
   activate: ->
-    return unless fs.existsSync(path.join(atom.project.path, 'Rakefile'))
-
     createStatusEntry = =>
-      testStatusView = new TestStatusView
-      @testStatusStatusBar = new TestStatusStatusBarView(testStatusView)
+      @testStatusStatusBar = new TestStatusStatusBarView
 
     if atom.workspaceView.statusBar
       createStatusEntry()

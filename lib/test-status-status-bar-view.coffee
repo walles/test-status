@@ -1,6 +1,8 @@
 {spawn} = require 'child_process'
 {View}  = require 'atom'
 
+TestStatusView = require './test-status-view'
+
 module.exports =
 # Internal: A status bar view for the test status icon.
 class TestStatusStatusBarView extends View
@@ -11,7 +13,8 @@ class TestStatusStatusBarView extends View
       @span outlet:  'testStatus', class: 'test-status icon icon-hubot', tabindex: -1, ''
 
   # Internal: Initialize the status bar view and event handlers.
-  initialize: (@testStatusView) ->
+  initialize: ->
+    @testStatusView = new TestStatusView
     @attach()
 
     atom.workspace.eachEditor (editor) =>
