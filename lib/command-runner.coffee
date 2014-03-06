@@ -38,19 +38,25 @@ class CommandRunner
     @testStatus.removeClass('success fail').addClass('pending')
 
     cmd = cmd.split(' ')
-    proc = spawn(cmd.shift(), cmd, cwd: atom.project.path)
-    output = ''
 
-    proc.stdout.on 'data', (data) ->
-      output += data.toString()
+    try
+      proc = spawn(cmd.shift(), cmd, cwd: atom.project.path)
+      output = ''
 
-    proc.stderr.on 'data', (data) ->
-      output += data.toString()
+      proc.stdout.on 'data', (data) ->
+        output += data.toString()
 
-    proc.on 'close', (code) =>
-      @testStatusView.update(output)
+      proc.stderr.on 'data', (data) ->
+        output += data.toString()
 
-      if code is 0
-        @testStatus.removeClass('pending fail').addClass('success')
-      else
-        @testStatus.removeClass('pending success').addClass('fail')
+      proc.on 'close', (code) =>
+        @testStatusView.update(output)
+
+        if code is 0
+          @testStatus.removeClass('pending fail').addClass('success')
+        else
+          @testStatus.removeClass('pending success').addClass('fail')
+    catch err
+      @testStatus.removeClass('pending success').addClass('fail')
+      @testStatusView.update('An error occured while attempting to run the test command')
+      console.error "Test-Status:", err
