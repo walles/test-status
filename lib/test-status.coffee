@@ -8,6 +8,13 @@ module.exports =
   #
   # Returns nothing.
   activate: ->
+    atom.config.setDefaults('test-status', {
+      'Rakefile': 'rake test',
+      'Gruntfile': 'grunt test'
+      'script/test': 'script/test'
+      'script/cibuild': 'script/cibuild'
+    })
+
     createStatusEntry = =>
       @testStatusStatusBar = new TestStatusStatusBarView
 

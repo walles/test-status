@@ -1,7 +1,9 @@
 {spawn} = require 'child_process'
-{View}  = require 'atom'
+
+{View} = require 'atom'
 
 TestStatusView = require './test-status-view'
+CommandRunner = require './command-runner'
 
 module.exports =
 # Internal: A status bar view for the test status icon.
@@ -15,6 +17,7 @@ class TestStatusStatusBarView extends View
   # Internal: Initialize the status bar view and event handlers.
   initialize: ->
     @testStatusView = new TestStatusView
+    @commandRunner = new CommandRunner(@testStatus, @testStatusView)
     @attach()
 
     atom.workspace.eachEditor (editor) =>
@@ -45,14 +48,14 @@ class TestStatusStatusBarView extends View
 
   # Internal: Subscribe to events on the editor buffer.
   #
-  # editor - An Editor instance to handle buffer events for.
+  # editor - An editor instance to handle buffer events for.
   #
   # Returns nothing.
   subscribeBufferEvents: (editor) ->
     buffer = editor.getBuffer()
 
     @subscribe buffer.on 'will-be-saved', =>
-      @runTests()
+      @commandRunner.run()
 
     @subscribe buffer.on 'destroyed', =>
       @testStatus.removeClass('pending success fail')
@@ -64,26 +67,3 @@ class TestStatusStatusBarView extends View
   unsubscribeBufferEvents: (editor) ->
     buffer = editor.getBuffer()
     @unsubscribe(buffer)
-
-  # Internal: Run `rake` and update the status bar view.
-  #
-  # Returns nothing.
-  runTests: ->
-    @testStatus.removeClass('success fail').addClass('pending')
-
-    rake = spawn('rake', [], cwd: atom.project.path)
-    output = ''
-
-    rake.stdout.on 'data', (data) =>
-      output += data.toString()
-
-    rake.stderr.on 'data', (data) =>
-      output += data.toString()
-
-    rake.on 'close', (code) =>
-      @testStatusView.update(output)
-
-      if code is 0
-        @testStatus.removeClass('pending fail').addClass('success')
-      else
-        @testStatus.removeClass('pending success').addClass('fail')
