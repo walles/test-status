@@ -20,7 +20,7 @@ class TestStatusView extends View
 
   # Internal: Update the test-status output view contents.
   #
-  # output - A String of the test runner results.
+  # output - A string of the test runner results.
   #
   # Returns nothing.
   update: (output) ->
