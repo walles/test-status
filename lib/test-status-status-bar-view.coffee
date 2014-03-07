@@ -27,7 +27,7 @@ class TestStatusStatusBarView extends View
       @testStatusView.toggle()
 
     atom.workspaceView.command "test-status:run-tests", =>
-      @runTests()
+      @commandRunner.run()
 
   # Internal: Attach the status bar view to the status bar.
   #
