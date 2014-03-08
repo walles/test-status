@@ -54,7 +54,7 @@ class TestStatusStatusBarView extends View
   subscribeBufferEvents: (editor) ->
     buffer = editor.getBuffer()
 
-    @subscribe buffer.on 'will-be-saved', =>
+    @subscribe buffer.on 'saved', =>
       @commandRunner.run()
 
     @subscribe buffer.on 'destroyed', =>
