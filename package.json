@@ -1,7 +1,7 @@
 {
   "name": "test-status",
   "main": "./lib/test-status",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Adds the status of your `rake` command to the status bar",
   "repository": "https://github.com/tombell/test-status",
   "license": "MIT",
