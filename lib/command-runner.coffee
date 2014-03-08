@@ -24,7 +24,7 @@ class CommandRunner
     cmd = null
 
     for file in Object.keys(cfg)
-      if fs.existsSync(patah.join(atom.project.path, file))
+      if fs.existsSync(path.join(atom.project.path, file))
         cmd = cfg[file]
         break
 
