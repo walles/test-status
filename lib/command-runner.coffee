@@ -18,19 +18,13 @@ class CommandRunner
   #
   # Returns nothing.
   run: ->
+    return unless atom.project.path?
+
     cfg = atom.config.get('test-status')
     cmd = null
 
     for file in Object.keys(cfg)
-      if typeof atom.project.path isnt 'string' or typeof file isnt 'string'
-        console.error """
-          The `atom.project.path` was not a string (#{atom.project.path}) or
-          the configured task runner `file` was not a string (#{file}). Please
-          open an issue on https://github.com/tombell/test-status/issues/new
-          with the contents of this message.
-        """
-
-      if fs.existsSync(path.join(atom.project.path, file))
+      if fs.existsSync(patah.join(atom.project.path, file))
         cmd = cfg[file]
         break
 
