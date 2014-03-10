@@ -24,7 +24,7 @@ By default, the following files are mapped to the commands:
   * `Gruntfile` &rarr; `grunt test`
   * `script/test` &rarr; `script/test`
   * `script/cibuild` &rarr; `script/cibuild`
-  * `.deft` &rarr; `deft test` (Open Dylan)
+  * `deft-package.json` &rarr; `deft test` (Open Dylan)
 
 When your command is running the Hubot face in the status bar will turn orange.
 If the command exits with 0 the Hubot face will turn green. Exiting with a

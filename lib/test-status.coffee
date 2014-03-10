@@ -13,7 +13,7 @@ module.exports =
       'Gruntfile': 'grunt test'
       'script/test': 'script/test'
       'script/cibuild': 'script/cibuild'
-      '.deft': 'deft test'
+      'deft-package.json': 'deft test'
     })
 
     createStatusEntry = =>
