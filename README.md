@@ -55,6 +55,10 @@ preferred test runner. Just add the overriden values to your `config.cson`.
 Because of the way Atom handles the keys of configuration options you should not
 include the file extension for the file.
 
+## Gotchyas
+
+* Atom uses `PATH` from where it was launched. Use `atom` from the console for maximum sanity, as Atom from the icon pulls the PATH from whatever launchctl is setup from.
+
 ## Support
 
 If you wish to support this package and help further its development, feel free
