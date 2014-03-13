@@ -55,8 +55,10 @@ class CommandRunner
         @testStatusView.update(output)
 
         if code is 0
+          atom.emit 'test-status:success'
           @testStatus.removeClass('pending fail').addClass('success')
         else
+          atom.emit 'test-status:fail'
           @testStatus.removeClass('pending success').addClass('fail')
     catch err
       @testStatus.removeClass('pending success').addClass('fail')
