@@ -1,4 +1,5 @@
 {View} = require 'atom'
+Convert = null
 
 module.exports =
 # Internal: A tool-panel view for the test result output.
