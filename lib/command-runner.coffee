@@ -2,6 +2,8 @@ fs      = require 'fs'
 path    = require 'path'
 {spawn} = require 'child_process'
 
+glob    = require 'glob'
+
 module.exports =
 # Internal: Finds the correct test command to run based on what "file" it can
 # find in the project root.
