@@ -1,4 +1,3 @@
-fs      = require 'fs'
 path    = require 'path'
 {spawn} = require 'child_process'
 
@@ -26,7 +25,10 @@ class CommandRunner
     cmd = null
 
     for file in Object.keys(cfg)
-      if fs.existsSync(path.join(atom.project.path, file))
+      pattern = path.join(atom.project.path, file)
+      matches = glob.sync(pattern)
+
+      if matches.length > 0
         cmd = cfg[file]
         break
 
