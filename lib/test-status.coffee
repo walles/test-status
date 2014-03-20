@@ -15,6 +15,7 @@ module.exports =
       'script/test': 'script/test'
       'script/cibuild': 'script/cibuild'
       'deft-package.json': 'deft test'
+      '*_test.go': 'go test -v .'
     })
 
     createStatusEntry = =>
