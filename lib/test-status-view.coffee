@@ -7,7 +7,7 @@ class TestStatusView extends View
 
   # Internal: Initialize test-status output view DOM contents.
   @content: ->
-    @div tabIndex: -1, class: 'test-status-output tool-panel panel-bottom padded', =>
+    @div tabIndex: -1, class: 'test-status-output tool-panel panel-bottom padded native-key-bindings', =>
       @div class: 'block', =>
         @div class: 'message', outlet: 'testStatusOutput'
 
