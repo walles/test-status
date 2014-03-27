@@ -20,12 +20,14 @@ determined by the order the mappings are defined in your configuration.
 
 By default, the following files are mapped to the commands:
 
-  * `test/*_test.rb` &rarr; `rake test`
-  * `spec/*_spec.rb` &rarr; `rake spec`
+  * `test/**/*_test.rb` &rarr; `rake test`
+  * `spec/**/*_spec.rb` &rarr; `rake spec`
   * `Gruntfile.*` &rarr; `grunt test`
   * `script/test` &rarr; `script/test`
   * `script/cibuild` &rarr; `script/cibuild`
   * `deft-package.json` &rarr; `deft test` (Open Dylan)
+  * `*_test.go` &rarr; `go test -v .`
+  * `phpunit.xml` &rarr; `phpunit`
 
 When your command is running the Hubot face in the status bar will turn orange.
 If the command exits with 0 the Hubot face will turn green. Exiting with a
@@ -38,8 +40,8 @@ Windows the keymap is `ctrl-l`.
 The following _commands_ are available for you to remap and/or run via the
 command palette.
 
-* `test-status:toggle-output` - Toggles the test results output panel
-* `test-status:run-tests` - Runs the configured test command
+  * `test-status:toggle-output` - Toggles the test results output panel
+  * `test-status:run-tests` - Runs the configured test command
 
 ## Configuring
 
@@ -49,7 +51,7 @@ can now use glob style matches in the file name.
 
 ```coffeescript
 'test-status':
-  'spec/*_spec.rb': 'rake spec'
+  'spec/**/*_spec.rb': 'rake spec'
   'Gruntfile.*': 'grunt spec'
   'gulpfile': 'gulp test'
 ```
