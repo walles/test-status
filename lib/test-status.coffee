@@ -16,6 +16,7 @@ module.exports =
       'script/cibuild': 'script/cibuild'
       'deft-package.json': 'deft test'
       '*_test.go': 'go test -v .'
+      'phpunit.xml': 'phpunit'
     })
 
     createStatusEntry = =>
