@@ -56,9 +56,6 @@ can now use glob style matches in the file name.
   'gulpfile': 'gulp test'
 ```
 
-Because of the way Atom handles the keys of configuration options you should not
-include the file extension for the file.
-
 ## Gotchyas
 
 * Atom uses `PATH` from where it was launched. Use `atom` from the console for
@@ -66,7 +63,7 @@ include the file extension for the file.
   setup from.
 * When manually configuring file matches containing periods, the Settings view
   for the package will appear to be broken. This is due to Atom thinking the
-  period is a keypath.
+  period is a keypath. You should manually edit the `config.cson` file.
 
 ## Support
 
