@@ -12,6 +12,7 @@ module.exports =
       'test/**/*_test.rb': 'rake test',
       'spec/**/*_spec.rb': 'rake spec',
       'Gruntfile.*': 'grunt test'
+      'gulpfile.*': 'gulp test'
       'script/test': 'script/test'
       'script/cibuild': 'script/cibuild'
       'deft-package.json': 'deft test'
