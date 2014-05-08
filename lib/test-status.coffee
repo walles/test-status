@@ -11,13 +11,13 @@ module.exports =
     atom.config.setDefaults('test-status', {
       'test/**/*_test.rb': 'rake test',
       'spec/**/*_spec.rb': 'rake spec',
-      'Gruntfile.*': 'grunt test'
-      'gulpfile.*': 'gulp test'
-      'script/test': 'script/test'
-      'script/cibuild': 'script/cibuild'
+      'Gruntfile.*':       'grunt test'
+      'gulpfile.*':        'gulp test'
+      'script/test':       'script/test'
+      'script/cibuild':    'script/cibuild'
       'deft-package.json': 'deft test'
-      '*_test.go': 'go test -v .'
-      'phpunit.xml': 'phpunit'
+      '*_test.go':         'go test -v .'
+      'phpunit.xml':       'phpunit'
     })
 
     createStatusEntry = =>
