@@ -67,4 +67,3 @@ class CommandRunner
     catch err
       @testStatus.removeClass('pending success').addClass('fail')
       @testStatusView.update('An error occured while attempting to run the test command')
-      console.error "Test-Status:", err

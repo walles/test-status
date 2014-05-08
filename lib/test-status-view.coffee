@@ -1,5 +1,6 @@
-{View} = require 'atom'
-Convert = null
+{View}  = require 'atom'
+
+Convert = require 'ansi-to-html'
 
 module.exports =
 # Internal: A tool-panel view for the test result output.
@@ -25,9 +26,8 @@ class TestStatusView extends View
   #
   # Returns nothing.
   update: (output) ->
-    Convert ?= require 'ansi-to-html'
-    convert = new Convert
-    @output = convert.toHtml(output)
+    @convert ?= new Convert
+    @output = @convert.toHtml(output)
     @testStatusOutput.html("<pre>#{@output.trim()}</pre>")
 
   # Internal: Detach and destroy the test-status output view.
