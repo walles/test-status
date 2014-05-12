@@ -27,7 +27,12 @@ class TestStatusView extends View
   # Returns nothing.
   update: (output) ->
     @convert ?= new Convert
-    @output = @convert.toHtml(output)
+    @output = @convert.toHtml(
+      output.replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+      )
     @testStatusOutput.html("<pre>#{@output.trim()}</pre>")
 
   # Internal: Detach and destroy the test-status output view.
