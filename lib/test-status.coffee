@@ -11,6 +11,7 @@ module.exports =
     atom.config.setDefaults('test-status', {
       'test/**/*_test.rb': 'rake test',
       'spec/**/*_spec.rb': 'rake spec',
+      'test/mocha.opts':   'mocha'
       'Gruntfile.*':       'grunt test'
       'gulpfile.*':        'gulp test'
       'script/test':       'script/test'
