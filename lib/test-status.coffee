@@ -19,6 +19,7 @@ module.exports =
       'deft-package.json': 'deft test'
       '*_test.go':         'go test -v .'
       'phpunit.xml':       'phpunit'
+      'setup.py':          'python setup.py test'
       'Makefile':          'make test'
     })
 
