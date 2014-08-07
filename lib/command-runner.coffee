@@ -41,6 +41,9 @@ class CommandRunner
   #
   # Returns nothing.
   execute: (cmd) ->
+    return if @running
+    @running = true
+
     @testStatus.removeClass('success fail').addClass('pending')
 
     cmd = cmd.split(' ')
@@ -56,6 +59,7 @@ class CommandRunner
         output += data.toString()
 
       proc.on 'close', (code) =>
+        @running = false
         @testStatusView.update(output)
 
         if code is 0
@@ -65,5 +69,6 @@ class CommandRunner
           atom.emit 'test-status:fail'
           @testStatus.removeClass('pending success').addClass('fail')
     catch err
+      @running = false
       @testStatus.removeClass('pending success').addClass('fail')
       @testStatusView.update('An error occured while attempting to run the test command')
