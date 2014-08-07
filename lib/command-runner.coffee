@@ -1,7 +1,9 @@
 path    = require 'path'
 {spawn} = require 'child_process'
 
-glob    = require 'glob'
+glob = require 'glob'
+
+config = require './config'
 
 module.exports =
 # Internal: Finds the correct test command to run based on what "file" it can
@@ -21,7 +23,7 @@ class CommandRunner
   run: ->
     return unless atom.project.path?
 
-    cfg = atom.config.get('test-status')
+    cfg = config.readOrInitConfig()
     cmd = null
 
     for file in Object.keys(cfg)

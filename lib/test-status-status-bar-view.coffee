@@ -1,9 +1,7 @@
-{spawn} = require 'child_process'
-
 {View} = require 'atom'
 
 TestStatusView = require './test-status-view'
-CommandRunner = require './command-runner'
+CommandRunner  = require './command-runner'
 
 module.exports =
 # Internal: A status bar view for the test status icon.
