@@ -58,7 +58,6 @@ class TestStatusStatusBarView extends View
       @commandRunner.run()
 
     @subscribe buffer.on 'destroyed', =>
-      @testStatus.removeClass('pending success fail')
       @unsubscribe(buffer)
 
   # Internal: Unsubscribe from all events on the editor buffer.
