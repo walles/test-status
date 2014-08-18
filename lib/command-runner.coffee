@@ -46,10 +46,8 @@ class CommandRunner
 
     @testStatus.removeClass('success fail').addClass('pending')
 
-    cmd = cmd.split(' ')
-
     try
-      proc = spawn(cmd.shift(), cmd, cwd: atom.project.path)
+      proc = spawn("bash", ["-c", cmd], cwd: atom.project.path)
       output = ''
 
       proc.stdout.on 'data', (data) ->
