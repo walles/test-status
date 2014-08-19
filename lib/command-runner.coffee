@@ -46,10 +46,19 @@ class CommandRunner
 
     @testStatus.removeClass('success fail').addClass('pending')
 
-    cmd = cmd.split(' ')
-
     try
-      proc = spawn(cmd.shift(), cmd, cwd: atom.project.path)
+      cmdOpts = cwd: atom.project.path
+      
+      if process.platform is 'win32'
+        cmdFile = process.env.comspec or 'cmd.exe'
+        cmdArgs = ['/s', '/c', '"' + cmd + '"']
+        cmdOpts.windowsVerbatimArguments = true
+      else
+        cmdFile = '/bin/sh'
+        cmdArgs = ['-c', cmd]
+        
+      proc = spawn cmdFile, cmdArgs, cmdOpts
+
       output = ''
 
       proc.stdout.on 'data', (data) ->
