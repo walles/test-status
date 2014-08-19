@@ -50,15 +50,14 @@ class CommandRunner
       cmdOpts = cwd: atom.project.path
       
       if process.platform is 'win32'
-        cmdFile = process.env.comspec or 'cmd.exe';
-        cmdArgs = ['/s', '/c', '"' + cmd + '"'];
-        cmdOpts.windowsVerbatimArguments: true
-        proc = spawn(process.env.comspec or 'cmd.exe', ['/s', '/c', '"' + cmd + '"'], cmdOpts)
+        cmdFile = process.env.comspec or 'cmd.exe'
+        cmdArgs = ['/s', '/c', '"' + cmd + '"']
+        cmdOpts.windowsVerbatimArguments = true
       else
-        cmdFile = '/bin/sh';
-        cmdArgs = ['-c', command];
+        cmdFile = '/bin/sh'
+        cmdArgs = ['-c', command]
         
-      proc = spawn(cmdFile, cmdArgs, cmdOpts)
+      proc = spawn cmdFile, cmdArgs, cmdOpts
 
       output = ''
 
