@@ -55,7 +55,7 @@ class CommandRunner
         cmdOpts.windowsVerbatimArguments = true
       else
         cmdFile = '/bin/sh'
-        cmdArgs = ['-c', command]
+        cmdArgs = ['-c', cmd]
         
       proc = spawn cmdFile, cmdArgs, cmdOpts
 
