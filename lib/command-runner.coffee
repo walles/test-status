@@ -50,7 +50,7 @@ class CommandRunner
 
     try
       cmdOpts = cwd: atom.project.path
-      
+
       if process.platform is 'win32'
         cmdFile = process.env.comspec or 'cmd.exe'
         cmdArgs = ['/s', '/c', '"' + cmd + '"']
@@ -58,7 +58,7 @@ class CommandRunner
       else
         cmdFile = '/bin/sh'
         cmdArgs = ['-c', cmd]
-        
+
       proc = spawn cmdFile, cmdArgs, cmdOpts
 
       output = ''

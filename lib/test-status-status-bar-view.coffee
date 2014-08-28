@@ -53,6 +53,7 @@ class TestStatusStatusBarView extends View
     buffer = editor.getBuffer()
 
     @subscribe buffer.on 'saved', =>
+      return unless atom.config.get('test-status.autorun')
       @commandRunner.run()
 
     @subscribe buffer.on 'destroyed', =>
