@@ -1,7 +1,7 @@
 {
   "name": "test-status",
   "main": "./lib/test-status",
-  "version": "0.22.0",
+  "version": "0.23.0",
   "description": "Adds the status of your testing command to the status bar",
   "repository": "https://github.com/tombell/test-status",
   "license": "MIT",
@@ -9,8 +9,8 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
-    "glob":         "~3.2.9",
+    "glob": "~3.2.9",
     "ansi-to-html": "~0.1.0",
-    "season":       "~2.0.0"
+    "season": "~2.0.0"
   }
 }
