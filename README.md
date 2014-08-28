@@ -3,8 +3,6 @@
 Adds the status of your test command to the Atom status bar, when you save a
 source file.
 
-![Test Status Usage](https://raw.github.com/tombell/test-status/master/screenshots/atom-test-status.gif)
-
 ## Installing
 
 Use the Atom package manager, which can be found in the Settings view or run
