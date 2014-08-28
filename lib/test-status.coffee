@@ -5,7 +5,7 @@ module.exports =
   #
   # Returns nothing.
   activate: ->
-    atom.config.setDefaults('test-status', {})
+    atom.config.setDefaults('test-status', autorun: true)
 
     createStatusEntry = =>
       @testStatusStatusBar = new TestStatusStatusBarView
