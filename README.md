@@ -47,12 +47,3 @@ can now use glob style matches in the file name.
   'Gruntfile.*': 'grunt spec'
   'gulpfile': 'gulp test'
 ```
-
-## Gotchyas
-
-* Atom uses `PATH` from where it was launched. Use `atom` from the console for
-  maximum sanity, as Atom from the icon pulls the PATH from whatever launchctl is
-  setup from.
-* When manually configuring file matches containing periods, the Settings view
-  for the package will appear to be broken. This is due to Atom thinking the
-  period is a keypath. You should manually edit the `config.cson` file.
