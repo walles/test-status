@@ -56,10 +56,3 @@ can now use glob style matches in the file name.
 * When manually configuring file matches containing periods, the Settings view
   for the package will appear to be broken. This is due to Atom thinking the
   period is a keypath. You should manually edit the `config.cson` file.
-
-## Support
-
-If you wish to support this package and help further its development, feel free
-to tip via Gittip.
-
-[![Gittip](http://img.shields.io/gittip/tombell.png)](https://www.gittip.com/tombell/)
