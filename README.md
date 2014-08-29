@@ -20,5 +20,5 @@ test suite.
 The following commands are available for you to remap and/or run via the command
 palette.
 
-  * `test-status:toggle-outpu` toggles the test results output panel
+  * `test-status:toggle-output` toggles the test results output panel
   * `test-status:run-tests` runs the configured test command
