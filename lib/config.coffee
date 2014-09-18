@@ -24,6 +24,8 @@ DEFAULT_MAPPINGS = {
   'phpunit.xml':       'phpunit'
 
   'setup.py':          'python setup.py test'
+
+  'Cargo.toml':        'cargo test'
 }
 
 module.exports =
