@@ -1,12 +1,15 @@
 TestStatusStatusBarView = require './test-status-status-bar-view'
 
 module.exports =
+  config:
+    autorun:
+      type: 'boolean'
+      default: true
+
   # Public: Active the package and initialize the test-status views.
   #
   # Returns nothing.
   activate: ->
-    atom.config.setDefaults('test-status', autorun: true)
-
     createStatusEntry = =>
       @testStatusStatusBar = new TestStatusStatusBarView
 
