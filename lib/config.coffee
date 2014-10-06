@@ -26,6 +26,8 @@ DEFAULT_MAPPINGS = {
   'setup.py':          'python setup.py test'
 
   'Cargo.toml':        'cargo test'
+
+  'package.json':      'npm test'
 }
 
 module.exports =
