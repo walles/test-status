@@ -13,7 +13,7 @@ module.exports =
     createStatusEntry = =>
       @testStatusStatusBar = new TestStatusStatusBarView
 
-    if atom.workspaceView.statusBar
+    if atom.views.getView(atom.workspace).statusBar
       createStatusEntry()
     else
       atom.packages.once 'activated', ->
