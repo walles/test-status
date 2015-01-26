@@ -24,14 +24,14 @@ class TestStatusStatusBarView extends View
     @subscribe this, 'click', =>
       @testStatusView.toggle()
 
-    atom.workspaceView.command "test-status:run-tests", =>
+    atom.views.getView(atom.workspace).command "test-status:run-tests", =>
       @commandRunner.run()
 
   # Internal: Attach the status bar view to the status bar.
   #
   # Returns nothing.
   attach: ->
-    atom.workspaceView.statusBar.appendLeft(this)
+    atom.views.getView(atom.workspace).statusBar.appendLeft(this)
 
   # Internal: Detach and destroy the test-status status barview.
   #
