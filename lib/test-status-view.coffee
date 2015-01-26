@@ -17,7 +17,7 @@ class TestStatusView extends View
     @output = "<strong>No output</strong>"
     @testStatusOutput.html(@output).css('font-size', "#{atom.config.getInt('editor.fontSize')}px")
 
-    atom.views.getView(atom.workspace).command "test-status:toggle-output", =>
+    atom.workspaceView.command "test-status:toggle-output", =>
       @toggle()
 
   # Internal: Update the test-status output view contents.
@@ -48,4 +48,4 @@ class TestStatusView extends View
     if @hasParent()
       @detach()
     else
-      atom.views.getView(atom.workspace).prependToBottom(this) unless @hasParent()
+      atom.workspaceView.prependToBottom(this) unless @hasParent()
