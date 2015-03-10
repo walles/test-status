@@ -31,7 +31,10 @@ class TestStatusStatusBarView extends View
   #
   # Returns nothing.
   attach: ->
-    atom.workspaceView.statusBar.appendLeft(this)
+    statusBar = document.querySelector("status-bar")
+
+    if statusBar?
+      @statusBarTile = statusBar.addLeftTile(item: this, priority: 100)
 
   # Internal: Detach and destroy the test-status status barview.
   #
