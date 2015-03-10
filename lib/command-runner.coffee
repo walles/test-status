@@ -21,13 +21,14 @@ class CommandRunner
   #
   # Returns nothing.
   run: ->
-    return unless atom.project.path?
+    projPath = atom.project.getPath()
+    return unless projPath
 
     cfg = config.readOrInitConfig()
     cmd = null
 
     for file in Object.keys(cfg)
-      pattern = path.join(atom.project.path, file)
+      pattern = path.join(projPath, file)
       matches = glob.sync(pattern)
 
       if matches.length > 0
@@ -51,7 +52,7 @@ class CommandRunner
     cmd = cmd.split(' ')
 
     try
-      proc = spawn(cmd.shift(), cmd, cwd: atom.project.path)
+      proc = spawn(cmd.shift(), cmd, cwd: atom.project.getPath())
 
       output = ''
 
