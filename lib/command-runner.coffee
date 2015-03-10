@@ -49,10 +49,9 @@ class CommandRunner
 
     @testStatus.removeClass('success fail').addClass('pending')
 
-    cmd = cmd.split(' ')
-
     try
-      proc = spawn(cmd.shift(), cmd, cwd: atom.project.getPath())
+      cwd = atom.project.getPath()
+      proc = spawn("#{process.env.SHELL}", ["-c", cmd], cwd: cwd, env: {})
 
       output = ''
 
