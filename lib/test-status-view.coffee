@@ -18,7 +18,7 @@ class TestStatusView extends View
     @testStatusOutput.html(@output).css('font-size', "#{atom.config.getInt('editor.fontSize')}px")
 
     atom.commands.add 'atom-workspace',
-      "test-status:toggle-output": => @toggle()
+      'test-status:toggle-output': => @toggle()
 
   # Internal: Update the test-status output view contents.
   #

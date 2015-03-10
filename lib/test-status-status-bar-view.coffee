@@ -25,13 +25,13 @@ class TestStatusStatusBarView extends View
       @testStatusView.toggle()
 
     atom.commands.add 'atom-workspace',
-      "test-status:run-tests": => @commandRunner.run()
+      'test-status:run-tests': => @commandRunner.run()
 
   # Internal: Attach the status bar view to the status bar.
   #
   # Returns nothing.
   attach: ->
-    statusBar = document.querySelector("status-bar")
+    statusBar = document.querySelector('status-bar')
 
     if statusBar?
       @statusBarTile = statusBar.addLeftTile(item: this, priority: 100)
