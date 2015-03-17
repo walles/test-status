@@ -48,4 +48,4 @@ class TestStatusView extends View
     if @hasParent()
       @detach()
     else
-      atom.workspaceView.prependToBottom(this) unless @hasParent()
+      atom.workspace.addBottomPanel(item: this)
