@@ -28,7 +28,7 @@ class TestStatusStatusBarView extends View
         return unless editor == atom.workspace.getActiveTextEditor()
         @initialSub = false
 
-      @editorSub.dispose()
+      @editorSub?.dispose()
       @editorSub = editor.onDidSave =>
         return unless atom.config.get('test-status.autorun')
         @commandRunner.run()
