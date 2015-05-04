@@ -18,7 +18,7 @@ module.exports =
     if statusBar?
       createStatusEntry()
     else
-      atom.packages.once 'activated', ->
+      atom.packages.onDidActivateInitialPackages ->
         createStatusEntry()
 
   # Public: Deactivate the package and destroy the test-status views.
