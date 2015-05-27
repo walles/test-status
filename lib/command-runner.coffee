@@ -51,7 +51,7 @@ class CommandRunner
 
     try
       cwd = atom.project.getPaths()[0]
-      proc = spawn("#{process.env.SHELL}", ["-i", "-c", cmd], cwd: cwd)
+      proc = spawn("#{process.env.SHELL}", ['-l', '-i', '-c', cmd], cwd: cwd)
 
       output = ''
 
