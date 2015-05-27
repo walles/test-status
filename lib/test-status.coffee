@@ -13,6 +13,10 @@ module.exports =
     createStatusEntry = =>
       @testStatusStatusBar = new TestStatusStatusBarView
 
+      # Run tests once on startup
+      if atom.config.get('test-status.autorun')
+        @testStatusStatusBar.executeCommand()
+
     statusBar = document.querySelector('status-bar')
 
     if statusBar?

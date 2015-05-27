@@ -23,10 +23,14 @@ class TestStatusStatusBarView extends View
     @statusBarSub = atom.workspace.observeTextEditors (editor) =>
       @subscriptions.add editor.onDidSave =>
         return unless atom.config.get('test-status.autorun')
-        @commandRunner.run(@testStatus)
+        @executeCommand()
 
     atom.commands.add 'atom-workspace',
-      'test-status:run-tests': => @commandRunner.run(@testStatus)
+      'test-status:run-tests': => @executeCommand()
+
+  # Run the tests
+  executeCommand: ->
+    @commandRunner.run(@testStatus)
 
   # Internal: Attach the status bar view to the status bar.
   #
