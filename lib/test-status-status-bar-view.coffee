@@ -21,12 +21,12 @@ class TestStatusStatusBarView extends View
 
     @subscriptions = new CompositeDisposable
     @statusBarSub = atom.workspace.observeTextEditors (editor) =>
-      @subscriptions.add editor.onDidSave ->
+      @subscriptions.add editor.onDidSave =>
         return unless atom.config.get('test-status.autorun')
-        executeCommand()
+        @executeCommand()
 
     atom.commands.add 'atom-workspace',
-      'test-status:run-tests': -> executeCommand()
+      'test-status:run-tests': => @executeCommand()
 
   # Run the tests
   executeCommand: ->
