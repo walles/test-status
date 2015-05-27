@@ -11,9 +11,7 @@ class TestStatusStatusBarView extends View
   # Internal: Initialize test-status status bar view DOM contents.
   @content: ->
     @div click: 'toggleTestStatusView', class: 'inline-block', =>
-      @span outlet:  'testStatus',
-        class: 'test-status icon icon-hubot',
-        tabindex: -1, ''
+      @span outlet:  'testStatus', class: 'test-status icon icon-hubot', tabindex: -1, ''
 
   # Internal: Initialize the status bar view and event handlers.
   initialize: ->
@@ -28,7 +26,7 @@ class TestStatusStatusBarView extends View
         @commandRunner.run()
 
     atom.commands.add 'atom-workspace',
-      'test-status:run-tests': => @com mandRunner.run()
+      'test-status:run-tests': => @commandRunner.run()
 
   # Internal: Attach the status bar view to the status bar.
   #
@@ -39,7 +37,7 @@ class TestStatusStatusBarView extends View
     if statusBar?
       @statusBarTile = statusBar.addLeftTile(item: this, priority: 100)
 
-  # Internal: Detach and destroy the test-status status barview.
+  # Internal: Detach and destroy the test-status status bar view.
   #
   # Returns nothing.
   destroy: ->
