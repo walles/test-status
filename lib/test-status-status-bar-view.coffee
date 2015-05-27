@@ -1,4 +1,5 @@
 {View} = require 'atom-space-pen-views'
+{CompositeDisposable} = require 'atom'
 
 TestStatusView = require './test-status-view'
 CommandRunner  = require './command-runner'
@@ -18,18 +19,9 @@ class TestStatusStatusBarView extends View
     @commandRunner = new CommandRunner(@testStatus, @testStatusView)
     @attach()
 
-    @initialSub   = true
-    @editorSub    = null
+    @subscriptions = new CompositeDisposable
     @statusBarSub = atom.workspace.observeTextEditors (editor) =>
-      # On the initial run, only subscribe to the active text editor.
-      # There is technically no active on subsequent firings of this observer.
-      # If atom introduces an observeActiveTextEditor, that'd be ideal to use here.
-      if @initialSub
-        return unless editor == atom.workspace.getActiveTextEditor()
-        @initialSub = false
-
-      @editorSub?.dispose()
-      @editorSub = editor.onDidSave =>
+      @subscriptions.add editor.onDidSave =>
         return unless atom.config.get('test-status.autorun')
         @commandRunner.run()
 
@@ -45,7 +37,7 @@ class TestStatusStatusBarView extends View
     if statusBar?
       @statusBarTile = statusBar.addLeftTile(item: this, priority: 100)
 
-  # Internal: Detach and destroy the test-status status barview.
+  # Internal: Detach and destroy the test-status status bar view.
   #
   # Returns nothing.
   destroy: ->
@@ -54,8 +46,9 @@ class TestStatusStatusBarView extends View
 
     @statusBarSub.dispose()
     @statusBarSub = null
-    @editorSub.dispose()
-    @editorSub = null
+
+    @subscriptions.dispose()
+    @subscriptions = null
 
     @detach()
 
