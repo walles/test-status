@@ -32,3 +32,11 @@ describe "when linkifying something with an https:// URL in it", ->
 describe "when linkifying something with a file:/// URL in it", ->
   it "makes the URL clickable",
     expect("test implemented").toEqual(true)
+
+describe "when linkifying an absolute path + line number", ->
+  it "makes an URL to the correct line",
+    expect("test implemented").toEqual(true)
+
+describe "when linkifying an absolute path + line & column number", ->
+  it "makes an URL to the correct line and column",
+    expect("test implemented").toEqual(true)
