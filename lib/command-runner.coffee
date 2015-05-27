@@ -13,14 +13,13 @@ class CommandRunner
   # Internal: Initialize the command runner with the views for rendering the
   # output.
   #
-  # @testStatus - A space-pen outlet for the test status icon element.
   # @testStatusView - A space-pen view for the test status output element.
-  constructor: (@testStatus, @testStatusView) ->
+  constructor: (@testStatusView) ->
 
   # Internal: Run the test command based on configuration priority.
   #
   # Returns nothing.
-  run: ->
+  run: (testStatus) ->
     projPath = atom.project.getPaths()[0]
     return unless projPath
 
@@ -36,18 +35,18 @@ class CommandRunner
         break
 
     return unless cmd
-    @execute(cmd)
+    @execute(cmd, testStatus)
 
   # Internal: Execute the command and render the output.
   #
   # cmd - A string of the command to run, including arguments.
   #
   # Returns nothing.
-  execute: (cmd) ->
+  execute: (cmd, testStatus) ->
     return if @running
     @running = true
 
-    @testStatus.removeClass('success fail').addClass('pending')
+    testStatus.removeClass('success fail').addClass('pending')
 
     try
       cwd = atom.project.getPaths()[0]
@@ -67,11 +66,11 @@ class CommandRunner
 
         if code is 0
           atom.emit 'test-status:success'
-          @testStatus.removeClass('pending fail').addClass('success')
+          testStatus.removeClass('pending fail').addClass('success')
         else
           atom.emit 'test-status:fail'
-          @testStatus.removeClass('pending success').addClass('fail')
+          testStatus.removeClass('pending success').addClass('fail')
     catch err
       @running = false
-      @testStatus.removeClass('pending success').addClass('fail')
+      testStatus.removeClass('pending success').addClass('fail')
       @testStatusView.update('An error occured while attempting to run the test command')
