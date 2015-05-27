@@ -16,17 +16,17 @@ class TestStatusStatusBarView extends View
   # Internal: Initialize the status bar view and event handlers.
   initialize: ->
     @testStatusView = new TestStatusView
-    @commandRunner = new CommandRunner(@testStatus, @testStatusView)
+    @commandRunner = new CommandRunner(@testStatusView)
     @attach()
 
     @subscriptions = new CompositeDisposable
     @statusBarSub = atom.workspace.observeTextEditors (editor) =>
       @subscriptions.add editor.onDidSave =>
         return unless atom.config.get('test-status.autorun')
-        @commandRunner.run()
+        @commandRunner.run(@testStatus)
 
     atom.commands.add 'atom-workspace',
-      'test-status:run-tests': => @commandRunner.run()
+      'test-status:run-tests': => @commandRunner.run(@testStatus)
 
   # Internal: Attach the status bar view to the status bar.
   #
