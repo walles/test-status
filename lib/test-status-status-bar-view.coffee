@@ -1,4 +1,5 @@
 {View} = require 'atom-space-pen-views'
+{CompositeDisposable} = require 'atom'
 
 TestStatusView = require './test-status-view'
 CommandRunner  = require './command-runner'
@@ -10,7 +11,9 @@ class TestStatusStatusBarView extends View
   # Internal: Initialize test-status status bar view DOM contents.
   @content: ->
     @div click: 'toggleTestStatusView', class: 'inline-block', =>
-      @span outlet:  'testStatus', class: 'test-status icon icon-hubot', tabindex: -1, ''
+      @span outlet:  'testStatus',
+        class: 'test-status icon icon-hubot',
+        tabindex: -1, ''
 
   # Internal: Initialize the status bar view and event handlers.
   initialize: ->
@@ -18,23 +21,14 @@ class TestStatusStatusBarView extends View
     @commandRunner = new CommandRunner(@testStatus, @testStatusView)
     @attach()
 
-    @initialSub   = true
-    @editorSub    = null
+    @subscriptions = new CompositeDisposable
     @statusBarSub = atom.workspace.observeTextEditors (editor) =>
-      # On the initial run, only subscribe to the active text editor.
-      # There is technically no active on subsequent firings of this observer.
-      # If atom introduces an observeActiveTextEditor, that'd be ideal to use here.
-      if @initialSub
-        return unless editor == atom.workspace.getActiveTextEditor()
-        @initialSub = false
-
-      @editorSub?.dispose()
-      @editorSub = editor.onDidSave =>
+      @subscriptions.add editor.onDidSave =>
         return unless atom.config.get('test-status.autorun')
         @commandRunner.run()
 
     atom.commands.add 'atom-workspace',
-      'test-status:run-tests': => @commandRunner.run()
+      'test-status:run-tests': => @com mandRunner.run()
 
   # Internal: Attach the status bar view to the status bar.
   #
@@ -54,8 +48,9 @@ class TestStatusStatusBarView extends View
 
     @statusBarSub.dispose()
     @statusBarSub = null
-    @editorSub.dispose()
-    @editorSub = null
+
+    @subscriptions.dispose()
+    @subscriptions = null
 
     @detach()
 
