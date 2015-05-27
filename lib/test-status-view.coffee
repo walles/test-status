@@ -35,6 +35,9 @@ class TestStatusView extends View
       )
     @testStatusOutput.html("<pre>#{@output.trim()}</pre>")
 
+  @linkify: (not_linked_html) ->
+    return not_linked_html
+
   # Internal: Detach and destroy the test-status output view.
   #
   # Returns nothing.
