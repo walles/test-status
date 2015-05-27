@@ -27,12 +27,12 @@ class TestStatusView extends View
   # Returns nothing.
   update: (output) ->
     @convert ?= new Convert
-    @output = @convert.toHtml(
+    @output = TestStatusView.linkify(@convert.toHtml(
       output.replace(/&/g, '&amp;')
         .replace(/"/g, '&quot;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
-      )
+      ))
     @testStatusOutput.html("<pre>#{@output.trim()}</pre>")
 
   @linkify: (not_linked_html) ->
