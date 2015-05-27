@@ -15,7 +15,7 @@ module.exports =
 
       # Run tests once on startup
       if atom.config.get('test-status.autorun')
-        @testStatusStatusBar.execute_tests()
+        @testStatusStatusBar.executeCommand()
 
     statusBar = document.querySelector('status-bar')
 
